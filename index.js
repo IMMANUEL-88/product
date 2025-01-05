@@ -11,14 +11,9 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(DB_URI, {
-  serverSelectionTimeoutMS: 5000 // Timeout after 5 seconds
-}).then(() => {
-  console.log('MongoDB connected');
-}).catch((error) => {
-  console.error('MongoDB connection error:', error);
-});
-
+mongoose.connect(process.env.MONGO_URI, {
+}).then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 // Product Schema
 const productSchema = new mongoose.Schema({
